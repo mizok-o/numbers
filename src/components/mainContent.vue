@@ -2,13 +2,21 @@
   <div class="main__container">
     <h2>ログ</h2>
     <div class="main__content">
-      <ul>
-        <li>
-          <div class="file__container">
-
+      <ul class="main__items__container">
+        <li
+          v-for="item in items"
+          :key="item.id"
+          :class="item.kind"
+          class="main__item"
+        >
+          <div class="item__file__container">
+            <img :src="item.image">
+          </div>
+          <div class="item__text">
+            <span style="font-size: 13px;">No.{{item.id}}</span>
+            <h4 class="item__name">{{ item.name }}</h4>
           </div>
         </li>
-        <li></li>
       </ul>
     </div>
   </div>
@@ -16,10 +24,39 @@
 
 <script>
 export default {
-  name: 'main'
+  name: 'main',
+  data() {
+    return {
+      items: [
+        { image: require('@/assets/img/logo.png'), name: "Vue.js", kind: "relax", id: 0},
+        { image: require('@/assets/img/logo.png'), name: "Vue.js", kind: "relax", id: 1}
+      ]
+    }
+  }
 }
 </script>
 
 <style scoped>
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main__items__container{
+  display: flex;
+}
+
+.main__item {
+  margin-right: 48px;
+}
+
+.item__file__container {
+  border: 3px solid #252525;
+}
+
+.item__text{
+  margin: 12px 0 0;
+}
 
 </style>

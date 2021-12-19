@@ -31,6 +31,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
 h2 {
   font-size: 56px;
 }

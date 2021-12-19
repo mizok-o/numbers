@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style scoped>
+.moveBar__container {
+  margin: 40px 0 0;
+}
+
 .moveBar__content {
   position: relative;
   width: 2px;
