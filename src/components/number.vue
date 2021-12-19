@@ -56,7 +56,7 @@ a {
 }
 
 .moving {
-  animation: moveNumbers 15s infinite;
+  animation: moveNumbers 13.5s infinite;
 }
 @keyframes moveNumbers {
   0% {
