@@ -1,31 +1,37 @@
 <template>
   <number />
+  <mainContent />
   <autoMoveBar />
 </template>
 
 <script>
 import number from './components/number.vue'
 import autoMoveBar from './components/autoMoveBar.vue'
+import mainContent from './components/mainContent.vue'
 
 export default {
   name: 'App',
   components: {
     number,
-    autoMoveBar
+    autoMoveBar,
+    mainContent
   }
 }
 </script>
 
 <style>
+@import "../src/assets/sass/prepend.scss";
+
 body {
-  margin: 0;
+  margin: 32px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 32px;
+}
+h2 {
+  font-size: 56px;
 }
 </style>
