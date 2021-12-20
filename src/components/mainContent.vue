@@ -1,6 +1,6 @@
 <template>
   <div class="main__container">
-    <h2>ログ</h2>
+    <h2>忘れてはいけない物たち</h2>
     <div class="main__content">
       <ul class="main__items__container">
         <li
@@ -10,7 +10,8 @@
           class="main__item"
         >
           <div class="item__file__container">
-            <img :src="item.src">
+            <img v-if="item.format === 'img'" :src="item.src">
+            <video v-if="item.format === 'video'" :src="item.src"></video>
           </div>
           <div class="item__text">
             <span style="font-size: 13px;">No.{{item.id}}</span>
@@ -29,7 +30,8 @@ export default {
     return {
       items: [
         { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", kind: "relax", id: 0},
-        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "video", kind: "relax", id: 1}
+        { src: require('@/assets/video/relax-miipan.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 1},
+        { src: require('@/assets/video/relax-miipan02.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 2}
       ]
     }
   }
@@ -58,7 +60,7 @@ ul {
   border: 3px solid #252525;
 }
 
-.item__file__container img {
+.item__file__container img, video {
   width: 100%;
   height: 100%;
 }
