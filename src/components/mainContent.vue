@@ -10,7 +10,7 @@
           class="main__item"
         >
           <div class="item__file__container">
-            <img :src="item.image">
+            <img :src="item.src">
           </div>
           <div class="item__text">
             <span style="font-size: 13px;">No.{{item.id}}</span>
@@ -28,8 +28,8 @@ export default {
   data() {
     return {
       items: [
-        { image: require('@/assets/img/logo.png'), name: "Vue.js", kind: "relax", id: 0},
-        { image: require('@/assets/img/logo.png'), name: "Vue.js", kind: "relax", id: 1}
+        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", kind: "relax", id: 0},
+        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "video", kind: "relax", id: 1}
       ]
     }
   }
@@ -48,11 +48,19 @@ ul {
 }
 
 .main__item {
+  width: 224px;
   margin-right: 48px;
 }
 
 .item__file__container {
+  width: 218px;
+  height: 218px;
   border: 3px solid #252525;
+}
+
+.item__file__container img {
+  width: 100%;
+  height: 100%;
 }
 
 .item__text{
