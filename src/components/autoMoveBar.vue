@@ -14,7 +14,9 @@ export default {
 
 <style scoped>
 .moveBar__container {
-  margin: 40px 0 0;
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
 }
 
 .moveBar__content {

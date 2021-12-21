@@ -1,6 +1,6 @@
 <template>
   <div class="main__container">
-    <h2>忘れてはいけない物たち</h2>
+    <h2>画像データ</h2>
     <div class="main__content">
       <ul class="main__items__container">
         <li
@@ -11,7 +11,7 @@
         >
           <div class="item__file__container">
             <img v-if="item.format === 'img'" :src="item.src">
-            <video v-if="item.format === 'video'" :src="item.src"></video>
+            <video v-if="item.format === 'video'" :src="item.src" controls></video>
           </div>
           <div class="item__text">
             <span style="font-size: 13px;">No.{{item.id}}</span>
@@ -20,11 +20,14 @@
         </li>
       </ul>
     </div>
+    <upload />
   </div>
 </template>
 
 <script>
+import upload from './upload.vue'
 export default {
+  components: { upload },
   name: 'main',
   data() {
     return {
