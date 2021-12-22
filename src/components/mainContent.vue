@@ -20,7 +20,10 @@
         </li>
       </ul>
     </div>
-    <upload />
+    <div id="id">
+      <upload v-model="picture" />
+      <img :src="picture" />
+    </div>
   </div>
 </template>
 
@@ -35,7 +38,8 @@ export default {
         { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", kind: "relax", id: 0},
         { src: require('@/assets/video/relax-miipan.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 1},
         { src: require('@/assets/video/relax-miipan02.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 2}
-      ]
+      ],
+      picture: null
     }
   }
 }
