@@ -1,6 +1,6 @@
 <template>
   <div class="numbers-container">
-    <h1 :class="{ moving: move }"><span style="font-size: 104px;">#</span>{{numbers}}</h1>
+    <h2 :class="{ moving: move }"><span style="font-size: 48px;">#</span>{{numbers}}</h2>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      numbers: 99,
+      numbers: 0,
       move: false
     }
   },
@@ -26,7 +26,6 @@ export default {
   mounted() {
     onload = () => {
       setInterval(() => {
-        //現在時刻を表示する関数
         this.showNumbers();
       }, 75);
     }
@@ -35,14 +34,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  width: 240px;
-  margin: 0 auto;
-  font-size: 120px;
-  /* transform: translateX(0); */
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -55,8 +47,12 @@ a {
   color: #42b983;
 }
 
+.numbers-container {
+  /* margin: 40px; */
+}
+
 .moving {
-  animation: moveNumbers 13.5s infinite;
+  /* animation: moveNumbers 13.5s infinite; */
 }
 @keyframes moveNumbers {
   0% {

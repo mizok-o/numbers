@@ -1,6 +1,6 @@
 <template>
-  <div class="moveBar-container">
-    <div class="moveBar-content">
+  <div class="moveBar__container">
+    <div class="moveBar__content">
       <div class="moveBar"></div>
     </div>
   </div>
@@ -8,31 +8,18 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-    }
-  },
-  methods: {
-  },
-  mounted() {
-    // onload = () => {
-    //   setInterval(() => {
-    //     //現在時刻を表示する関数
-    //     this.showNumbers();
-    //   }, 75);
-    // }
-    // this.moveNumbers();
-  }
+  name: 'autoMoveBar'
 }
 </script>
 
 <style scoped>
-.moveBar-container {
-  margin: 0 32px;
+.moveBar__container {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
 }
 
-.moveBar-content {
+.moveBar__content {
   position: relative;
   width: 2px;
   height: 48px;
@@ -47,7 +34,7 @@ export default {
   animation: moveBlack 4.5s ease-in infinite;
 }
 
-.moveBar-content::after {
+.moveBar__content::after {
   content: "";
   position: absolute;
   top: 0;
