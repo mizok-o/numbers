@@ -20,17 +20,24 @@
         </li>
       </ul>
     </div>
-    <div id="id">
-      <upload v-model="picture" />
-      <img :src="picture" />
+    <div class="upload__container">
+      <label class="upload__content">
+        <input
+          type="file"
+          @change="upFile"
+          ref="upImg"
+          class="upload__button"
+        >
+      </label>
+      <img class="uploaded__preview" :src="uploaded" >
     </div>
   </div>
 </template>
 
 <script>
-import upload from './upload.vue'
+// import upload from './upload.vue'
 export default {
-  components: { upload },
+  // components: { upload },
   name: 'main',
   data() {
     return {
@@ -39,7 +46,19 @@ export default {
         { src: require('@/assets/video/relax-miipan.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 1},
         { src: require('@/assets/video/relax-miipan02.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 2}
       ],
-      picture: null
+      uploaded: ""
+    }
+  },
+  methods: {
+    upFile() {
+      const files = this.$refs.upImg;
+      const fileImg = files.files[0];
+      if (fileImg.type.startsWith("image/") || fileImg.type.startsWith("video/")) {
+        this.uploaded = window.URL.createObjectURL(fileImg);
+        const addContent = { src: this.uploaded, name: "new one", format: "img", kind: "relax", id: 3}
+        this.items.push(addContent)
+        console.log(this.items);
+      }
     }
   }
 }
@@ -74,6 +93,20 @@ ul {
 
 .item__text{
   margin: 12px 0 0;
+}
+
+.upload__container {
+  margin: 48px 0 0;
+}
+
+.upload__content {
+  display: block;
+}
+
+.uploaded__preview{
+  max-width: 700px;
+  max-height: 640px;
+  margin: 16px 0 0;
 }
 
 </style>

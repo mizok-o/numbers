@@ -1,22 +1,12 @@
 <template>
   <div class="upload__container">
-    <label v-if="!value" class="upload__content">
-      <input
-        type="file"
-        @change="upload"
-        class="upload__button"
-      >
-    </label>
-    <div v-if="value" class="uploaded">
     <label class="upload__content">
       <input
         type="file"
         @change="upload"
         class="upload__button"
       >
-      <img :src="value" />
-     </label>
-     </div>
+    </label>
   </div>
 </template>
 
