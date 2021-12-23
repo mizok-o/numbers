@@ -57,7 +57,6 @@ export default {
         this.uploaded = window.URL.createObjectURL(fileImg);
         const addContent = { src: this.uploaded, name: "new one", format: "img", kind: "relax", id: 3}
         this.items.push(addContent)
-        console.log(this.items);
       }
     }
   }
