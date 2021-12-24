@@ -1,6 +1,6 @@
 <template>
   <div class="numbers-container">
-    <h2 :class="{ moving: move }"><span style="font-size: 48px;">#</span>{{numbers}}</h2>
+    <h2 :class="{ moving: move }">#{{numbers}}</h2>
   </div>
 </template>
 

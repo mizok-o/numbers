@@ -1,3 +1,41 @@
-// h2 {
-//     font-size: 56px;
-// }
+body {
+    font-family: 'Noto Sans JP';
+}
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+.app__container {
+    max-width: 1024px;
+    margin: 32px 120px;
+}
+
+@media screen and (max-width:1024px) {
+    .app__container {
+        margin: 32px;
+    }
+}
+
+@media screen and (max-width:750px) {
+    h2 {
+        font-size: 28px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    .app__container {
+        margin: 16px;
+    }
+}
