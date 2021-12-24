@@ -1,6 +1,7 @@
 <template>
   <div class="upload__container">
     <h3>データの新規追加</h3>
+    <p>載せたい画像・動画の名前とファイルを追加してください。</p>
     <label class="upload__name">
       <input type="text" placeholder="名前を入力してください" v-model="name">
     </label>
@@ -16,7 +17,6 @@
 
 <script>
 export default {
-  name: "upload",
   props: ["itemList"],
   data() {
     return {

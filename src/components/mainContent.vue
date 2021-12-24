@@ -34,9 +34,9 @@ export default {
   data() {
     return {
       items: [
-        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", id: 0},
+        { src: require('@/assets/img/S__18538514.jpg'), name: "example", format: "img", id: 0},
         { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", id: 1},
-        { src: require('@/assets/video/relax-miipan02.mp4'), name: "ドゥン", format: "video", id: 2}
+        { src: require('@/assets/video/relax-miipan02.mp4'), name: "どぅん", format: "video", id: 2}
       ]
     }
   },
@@ -68,12 +68,18 @@ export default {
 }
 
 .item__file__container {
+  position: relative;
   width: 218px;
   height: 218px;
+  overflow: hidden;
   border: 3px solid #252525;
 }
 
-.item__file__container img, video {
+.item__file__container, img {
+  width: 218px;
+}
+
+.item__file__container video {
   width: 100%;
   height: 100%;
 }
