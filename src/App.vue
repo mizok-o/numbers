@@ -1,7 +1,9 @@
 <template>
-  <number />
-  <mainContent />
-  <autoMoveBar />
+  <div class="app__container">
+    <number />
+    <mainContent />
+    <autoMoveBar />
+  </div>
 </template>
 
 <script>
@@ -20,21 +22,7 @@ export default {
 </script>
 
 <style>
-@import "../src/assets/sass/prepend.scss";
+@import "./assets/sass/main.scss";
+@import "./assets/sass/prepend.scss";
 
-body {
-  margin: 32px;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-h2 {
-  font-size: 40px;
-}
 </style>
