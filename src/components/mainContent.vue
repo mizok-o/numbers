@@ -15,7 +15,7 @@
           </div>
           <div class="item__text">
             <span style="font-size: 13px;">No.{{item.id}}</span>
-            <h4 class="item__name">{{ item.name }}</h4>
+            <h3 class="item__name">{{ item.name }}</h3>
           </div>
         </li>
       </ul>
@@ -26,10 +26,8 @@
           type="file"
           @change="upFile"
           ref="upImg"
-          class="upload__button"
-        >
+          class="upload__button">
       </label>
-      <img class="uploaded__preview" :src="uploaded" >
     </div>
   </div>
 </template>
@@ -43,8 +41,8 @@ export default {
     return {
       items: [
         { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", kind: "relax", id: 0},
-        { src: require('@/assets/video/relax-miipan.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 1},
-        { src: require('@/assets/video/relax-miipan02.mp4'), name: "Vue.js", format: "video", kind: "relax", id: 2}
+        { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", kind: "relax", id: 1},
+        { src: require('@/assets/video/relax-miipan02.mp4'), name: "ドゥン！", format: "video", kind: "relax", id: 2}
       ],
       uploaded: ""
     }
@@ -64,19 +62,22 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.main__container {
+  margin: 48px 0 0;
+}
+
+.main__content {
+  margin: 8px 0 0;
 }
 
 .main__items__container{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .main__item {
   width: 224px;
-  margin-right: 48px;
+  margin: 16px 32px 0 0;
 }
 
 .item__file__container {
@@ -91,21 +92,62 @@ ul {
 }
 
 .item__text{
-  margin: 12px 0 0;
+  margin: 4px 0 0;
+}
+.item__name {
+  margin: 4px 0 0;
 }
 
 .upload__container {
-  margin: 48px 0 0;
+  margin: 40px 0 0;
 }
 
 .upload__content {
+  position: relative;
   display: block;
+  width: 160px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #252525;
 }
 
-.uploaded__preview{
-  max-width: 700px;
-  max-height: 640px;
-  margin: 16px 0 0;
+.upload__content::after {
+  content: "新規追加";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 600;
 }
 
+.upload__button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+@media screen and (max-width:750px) {
+  .main__items__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .main__item {
+    width: 164px;
+    margin-right: 0;
+  }
+  .item__file__container{
+    width: 164px;
+    height: 164px;
+    border: 2px solid #252525;
+  }
+  .item__name {
+    margin: 0;
+  }
+}
 </style>

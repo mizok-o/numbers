@@ -61,6 +61,6 @@ export default {
 
 <style scoped>
 .upload__container {
-  margin: 48px 0 0;
+  margin: 32px 0 0;
 }
 </style>

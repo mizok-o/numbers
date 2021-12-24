@@ -1,8 +1,6 @@
 <template>
   <div class="moveBar__container">
-    <div class="moveBar__content">
-      <div class="moveBar"></div>
-    </div>
+    <div class="moveBar"></div>
   </div>
 </template>
 
@@ -13,17 +11,13 @@ export default {
 </script>
 
 <style scoped>
-.moveBar__container {
-  position: absolute;
-  bottom: 24px;
-  left: 32px;
-}
 
-.moveBar__content {
+.moveBar__container {
   position: relative;
   width: 2px;
   height: 48px;
   overflow: hidden;
+  margin: 80px 0 0;
 }
 
 .moveBar {
@@ -34,7 +28,7 @@ export default {
   animation: moveBlack 4.5s ease-in infinite;
 }
 
-.moveBar__content::after {
+.moveBar__container::after {
   content: "";
   position: absolute;
   top: 0;
