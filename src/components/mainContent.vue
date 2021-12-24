@@ -20,42 +20,29 @@
         </li>
       </ul>
     </div>
-    <div class="upload__container">
-      <label class="upload__content">
-        <input
-          type="file"
-          @change="upFile"
-          ref="upImg"
-          class="upload__button">
-      </label>
-    </div>
+    <upload @getFile="addFile" :itemList="items" />
   </div>
 </template>
 
 <script>
-// import upload from './upload.vue'
+import Upload from './upload.vue';
 export default {
-  // components: { upload },
+  components: { 
+    Upload
+   },
   name: 'main',
   data() {
     return {
       items: [
-        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", kind: "relax", id: 0},
-        { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", kind: "relax", id: 1},
-        { src: require('@/assets/video/relax-miipan02.mp4'), name: "ドゥン！", format: "video", kind: "relax", id: 2}
-      ],
-      uploaded: ""
+        { src: require('@/assets/img/logo.png'), name: "Vue.js", format: "img", id: 0},
+        { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", id: 1},
+        { src: require('@/assets/video/relax-miipan02.mp4'), name: "ドゥン", format: "video", id: 2}
+      ]
     }
   },
   methods: {
-    upFile() {
-      const files = this.$refs.upImg;
-      const fileImg = files.files[0];
-      if (fileImg.type.startsWith("image/") || fileImg.type.startsWith("video/")) {
-        this.uploaded = window.URL.createObjectURL(fileImg);
-        const addContent = { src: this.uploaded, name: "new one", format: "img", kind: "relax", id: 3}
-        this.items.push(addContent)
-      }
+    addFile(m) {
+      this.items.push(m);
     }
   }
 }
@@ -96,39 +83,6 @@ export default {
 }
 .item__name {
   margin: 4px 0 0;
-}
-
-.upload__container {
-  margin: 40px 0 0;
-}
-
-.upload__content {
-  position: relative;
-  display: block;
-  width: 160px;
-  height: 48px;
-  border-radius: 8px;
-  background-color: #252525;
-}
-
-.upload__content::after {
-  content: "新規追加";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-weight: 600;
-}
-
-.upload__button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
 }
 
 @media screen and (max-width:750px) {

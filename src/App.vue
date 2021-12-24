@@ -2,20 +2,20 @@
   <div class="app__container">
     <number />
     <mainContent />
-    <autoMoveBar />
+    <!-- <autoMoveBar /> -->
   </div>
 </template>
 
 <script>
 import number from './components/number.vue'
-import autoMoveBar from './components/autoMoveBar.vue'
+// import autoMoveBar from './components/autoMoveBar.vue'
 import mainContent from './components/mainContent.vue'
 
 export default {
   name: 'App',
   components: {
     number,
-    autoMoveBar,
+    // autoMoveBar,
     mainContent
   }
 }
