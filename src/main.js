@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// require('@/src/sass/main.scss')
+new Vue({
+    render: h => h(App),
+}).$mount('#app');
 
 createApp(App).mount('#app');
