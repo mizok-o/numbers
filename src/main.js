@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
-// require('@/src/sass/main.scss')
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
 
 createApp(App).mount('#app');
