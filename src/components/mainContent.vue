@@ -1,6 +1,6 @@
 <template>
   <div class="main__container">
-    <h2>画像データ</h2>
+    <h2 @click="hello">画像データ</h2>
     <div class="main__content">
       <ul class="main__items__container">
         <li
@@ -37,12 +37,16 @@ export default {
         { src: require('@/assets/img/S__18538514.jpg'), name: "example", format: "img", id: 0},
         { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", id: 1},
         { src: require('@/assets/video/relax-miipan02.mp4'), name: "どぅん", format: "video", id: 2}
-      ]
+      ],
+      text: ''
     }
   },
   methods: {
     addFile(m) {
       this.items.push(m);
+    },
+    hello() {
+        console.log("成功");
     }
   }
 }
