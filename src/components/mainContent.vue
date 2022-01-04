@@ -30,7 +30,6 @@ export default {
   components: { 
     Upload
    },
-  name: 'main',
   data() {
     return {
       items: [

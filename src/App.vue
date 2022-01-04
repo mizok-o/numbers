@@ -1,11 +1,10 @@
 <template>
-  <router-link to="/">home</router-link>
-  <router-link to="/login"></router-link>
-  <router-view />
+  <router-link to="/">トップ</router-link>
+  <router-link to="/about">ログイン</router-link>
+  <router-view/>
 </template>
 
 <style>
 @import "./assets/sass/main.scss";
 @import "./assets/sass/prepend.scss";
-
 </style>

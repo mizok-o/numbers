@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   data() {
     return {
       numbers: 0,

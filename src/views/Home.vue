@@ -1,24 +1,15 @@
 <template>
-    <div class="app__container">
-        <login />
-        <number />
-        <mainContent />
-        <!-- <autoMoveBar /> -->
+  <div class="app__container">
+    <number />
+    <main-content/>
   </div>
 </template>
 
 <script>
+import MainContent from '../components/mainContent.vue'
 import number from '../components/number.vue'
-import mainContent from '../components/mainContent.vue'
-import Login from '../components/Login.vue'
-
 export default {
-  components: {
-    number,
-    mainContent,
-    Login
-  }
+  components: { number, MainContent },
+  name: 'Home'
 }
 </script>
-
-

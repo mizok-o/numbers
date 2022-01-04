@@ -5,9 +5,6 @@
 </template>
 
 <script>
-export default {
-  name: 'autoMoveBar'
-}
 </script>
 
 <style scoped>
