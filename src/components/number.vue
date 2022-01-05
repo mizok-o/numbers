@@ -1,6 +1,6 @@
 <template>
   <div class="numbers-container">
-    <h2 :class="{ moving: move }">#{{numbers}}</h2>
+    <h2>#{{numbers}}</h2>
   </div>
 </template>
 
@@ -8,8 +8,7 @@
 export default {
   data() {
     return {
-      numbers: 0,
-      move: false
+      numbers: ""
     }
   },
   methods: {
@@ -17,18 +16,12 @@ export default {
       const random = Math.random() * 100;
       const randomCut = Math.floor(random);
       this.numbers = ("0" + randomCut).slice(-2);
-    },
-    moveNumbers() {
-      this.move = true;
     }
   },
   mounted() {
-    onload = () => {
       setInterval(() => {
         this.showNumbers();
       }, 75);
-    }
-    this.moveNumbers();
   }
 }
 </script>

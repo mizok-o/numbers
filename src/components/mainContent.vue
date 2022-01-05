@@ -32,6 +32,7 @@ export default {
    },
   data() {
     return {
+      name: "",
       items: [
         { src: require('@/assets/img/S__18538514.jpg'), name: "example", format: "img", id: 0},
         { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", id: 1},
@@ -43,9 +44,6 @@ export default {
   methods: {
     addFile(m) {
       this.items.push(m);
-    },
-    hello() {
-        console.log("成功");
     }
   }
 }
