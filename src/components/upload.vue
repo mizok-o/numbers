@@ -2,9 +2,7 @@
   <div class="upload__container">
     <h3>データの新規追加</h3>
     <p>載せたい画像・動画の名前とファイルを追加してください。</p>
-    <label class="upload__name">
-      <input type="text" placeholder="名前を入力してください" v-model="name">
-    </label>
+    <input class="upload__name" type="text" placeholder="名前を入力してください" v-model="name">
     <label class="upload__file">
       <input
         type="file"
@@ -64,8 +62,6 @@ export default {
   width: 200px;
   height: 24px;
   margin: 16px 0 0;
-  border: 1px solid #252525;
-  border-radius: 4px;
   background-color: #fff;
 }
 

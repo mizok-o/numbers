@@ -3,3 +3,19 @@ body{
     color: #252525;
     font-size: 15px;
 }
+
+input {
+    border-bottom: 1px solid rgba(37, 37, 37, .3);
+    transition: .5s ease-in-out;
+
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 1px solid #252525;
+}
+
+input::placeholder {
+    font-size: 12px;
+    opacity: .3;
+}

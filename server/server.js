@@ -1,25 +1,30 @@
 const express = require('express')
-const mysql = require('mysql2')
+const router = express.Router()
+const mysql = require('mysql')
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  port: 3000,
+  port: 3306,
   user: 'root',
-  password: 'mitarashi3201',
+  password: '',
   database: 'filedata'
 })
 
-connection.connect()
-connection.query('select * from files', (e, result, fields) => {
-  console.log(result);
-})
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
+  console.log('connected as id ' + connection.threadId);
+});
 
-const app = express()
-app.get('/', function(req, res) {
-  res.send({
-    message: 'jaoifhroie'
-  })
-})
+connection.query("select * from files;",
+  (error, results) => {
+    console.log(error, results);
+  }
+);
 
-
-app.listen(process.env.PORT || 3000)
+router.post('/', function (req, res, next) {
+  console.log(req, res);
+  res.redirect('/');
+});

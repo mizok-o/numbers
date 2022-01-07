@@ -3,7 +3,7 @@
     <div class="password__img__container">
       <img class="password__img" src="../assets/img/password-icon.png" alt="パスワード アイコン">
     </div>
-    <form class="form__container" action="signup" method="post">
+    <form class="form__container" action="/" method="post">
         <div class="password__container">
           <label class="password__label">パスワード</label>
           <input class="password__enter" required type="password" placeholder="パスワードを入力してください。" />
@@ -43,17 +43,7 @@ export default {
 
 .password__enter {
   width: 240px;
-  border-bottom: 1px solid rgba(37, 37, 37, .3);
-  transition: .5s ease-in-out;
   margin: 2px 0 0;
-}
-.password__enter:focus {
-  outline: none;
-  border-bottom: 1px solid #252525;
-}
-.password__enter::placeholder {
-  font-size: 12px;
-  opacity: .3;
 }
 
 .form__submit {

@@ -6,10 +6,10 @@ const routes = [
   {
     path: '/files',
     component: Home,
-    name: 'Home',
-    meta: {
-      requiresAuth: true
-    }
+    name: 'Home'
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/',
