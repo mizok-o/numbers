@@ -5,17 +5,17 @@
       <ul class="main__items__container">
         <li
           v-for="item in items"
-          :key="item.id"
+          :key="item.file_id"
           :class="item.kind"
           class="main__item"
         >
           <div class="item__file__container">
-            <img v-if="item.format === 'img'" :src="item.src">
-            <video v-if="item.format === 'video'" :src="item.src" controls></video>
+            <img v-if="item.file_format === 'img'" :src="item.file_url">
+            <video v-if="item.file_format === 'video'" :src="item.file_url" controls></video>
           </div>
           <div class="item__text">
-            <span style="font-size: 13px;">No.{{item.id}}</span>
-            <h3 class="item__name">{{ item.name }}</h3>
+            <span style="font-size: 13px;">No.{{item.file_id}}</span>
+            <h3 class="item__name">{{ item.file_name }}</h3>
           </div>
         </li>
       </ul>
@@ -26,25 +26,30 @@
 
 <script>
 import Upload from './upload.vue';
+import axios from 'axios'
 export default {
   components: { 
     Upload
    },
   data() {
     return {
-      name: "",
-      items: [
-        { src: require('@/assets/img/S__18538514.jpg'), name: "example", format: "img", id: 0},
-        { src: require('@/assets/video/relax-miipan.mp4'), name: "ほいみ", format: "video", id: 1},
-        { src: require('@/assets/video/relax-miipan02.mp4'), name: "どぅん", format: "video", id: 2}
-      ]
+      items: []
     }
   },
   methods: {
     addFile(m) {
-      console.log(m);
       this.items.push(m);
     }
+  },
+  mounted() {
+    axios.get('http://localhost:3000/api/hello')
+      .then((res) => {
+        for(let i = 0; i < res.data.length;i++) {
+          this.items.push(res.data[i])
+          this.items[i].file_url = require('@/assets' + this.items[i].file_url)
+        }
+      })
+      .catch(res => console.log(res))
   }
 }
 </script>

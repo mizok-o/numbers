@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router()
+const app = express()
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({
@@ -10,21 +10,18 @@ const connection = mysql.createConnection({
   database: 'filedata'
 })
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
-  console.log('connected as id ' + connection.threadId);
-});
+app.listen(3000, () => console.log('example fire'))
+connection.connect()
 
-connection.query("select * from files;",
-  (error, results) => {
-    console.log(error, results);
-  }
-);
+app.get('/api/hello', (req, res) => {
+  res.set({ 
+    'Access-Control-Allow-Origin': 'http://localhost:8080'
+  })
 
-router.post('/', function (req, res, next) {
-  console.log(req, res);
-  res.redirect('/');
-});
+  connection.query("select * from files;",
+    (error, results) => {
+      res.send(results)
+    }
+  );
+  
+})
