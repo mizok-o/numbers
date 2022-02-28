@@ -1,9 +1,11 @@
 module.exports = {
-  css: {
-    loaderOptions: {
-      scss: {
-        prependData: '@import "./src/assets/scss/prepend.scss";'
+  devServer: {
+    proxy:{
+      '^/api/datas':{
+          target: 'http://localhost:8080',
+          ws: true,
+          secure: false
       }
-    }
+  }
   }
 }

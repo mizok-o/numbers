@@ -1,31 +1,38 @@
 <template>
   <div class="upload__container">
-    <h3>データの新規追加</h3>
+    <h3 @click="testAxios">データの新規追加</h3>
     <p>載せたい画像・動画の名前とファイルを追加してください。</p>
-    <input class="upload__name" type="text" placeholder="名前を入力してください" v-model="name">
-    <label class="upload__file">
-      <input
-        type="file"
-        @change="upFile"
-        ref="upImg">
-    </label>
-    <button class="upload__button" :disabled="checkDataFull(name)" @click="uploadFile(name)"></button>
+    <form action="http://localhost:3000/api/datas" method="post">
+      <input class="upload__name" type="text" placeholder="名前を入力してください" v-model="name">
+      <label class="upload__file">
+        <input
+          type="file"
+          @change="upFile"
+          ref="upImg">
+      </label>
+      <button class="upload__button" :disabled="checkDataFull(name)" @click="addMysql(name)"></button>
+    </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: ["itemList"],
   data() {
     return {
       uploadedFile: "",
-      uploadedFormat: ""
+      uploadedFormat: "",
+      email: "",
+      file: ""
     }
   },
   methods: {
     upFile() {
       const files = this.$refs.upImg;
       const fileContent = files.files[0];
+      console.log(window.URL.createObjectURL(fileContent));
       if (fileContent.type.startsWith("image/")) {
         this.uploadedFormat = "img"
         this.uploadedFile = window.URL.createObjectURL(fileContent);
@@ -41,10 +48,26 @@ export default {
         return true
       }
     },
-    uploadFile(fileName) {
+    // 画像データをまとめてPOST通信でNode.jsに送る
+    addMysql(fileName) {
       const nums = this.itemList.length
-      const addContent = { src: this.uploadedFile, name: fileName, format: this.uploadedFormat, id: nums}
-      this.$emit('getFile', addContent);
+      console.log(nums);
+      const addContent = {
+        file_url: this.uploadedFile,
+        file_name: fileName,
+        file_format: this.uploadedFormat,
+        file_id: nums,
+        file_genre: "stock"
+      }
+      this.$emit("newContent", addContent)
+      axios.post('http://localhost:3000/api/data', addContent)
+        .then((res) => {
+          console.log("res.body");
+          console.log(res);
+        })
+        .catch(() => {
+          console.log("失敗");
+        })
       this.uploadedFile = ""
       this.uploadedFormat = ""
     }

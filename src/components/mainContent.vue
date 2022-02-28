@@ -20,36 +20,26 @@
         </li>
       </ul>
     </div>
-    <upload @getFile="addFile" :itemList="items" />
+    <!-- <upload :itemList="items" @newContent="showContent" /> -->
   </div>
 </template>
 
 <script>
-import Upload from './upload.vue';
 import axios from 'axios'
 export default {
-  components: { 
-    Upload
-   },
   data() {
     return {
       items: []
     }
   },
-  methods: {
-    addFile(m) {
-      this.items.push(m);
-    }
-  },
   mounted() {
     axios.get('http://localhost:3000/api/hello')
-      .then((res) => {
-        for(let i = 0; i < res.data.length;i++) {
-          this.items.push(res.data[i])
-          this.items[i].file_url = require('@/assets' + this.items[i].file_url)
-        }
-      })
-      .catch(res => console.log(res))
+    .then((res) => {
+      for(let i = 0; i < res.data.length;i++) {
+        this.items.push(res.data[i])
+        this.items[i].file_url = require('@/assets' + this.items[i].file_url)
+      }
+    })
   }
 }
 </script>
@@ -66,11 +56,12 @@ export default {
 .main__items__container{
   display: flex;
   flex-wrap: wrap;
+  max-width: 816px;
 }
 
 .main__item {
   width: 224px;
-  margin: 16px 32px 0 0;
+  margin: 16px 48px 0 0;
 }
 
 .item__file__container {
