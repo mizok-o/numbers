@@ -2,10 +2,18 @@
   <div class="main__container">
     <h2>画像データ</h2>
     <div class="main__content">
-      <div class="main__content__options">
-        <button class="options__sort__button" @click="sortAscend">新しい順</button>
-        <button class="options__sort__button" @click="sortDescend">古い順</button>
-        <button class="options__sort__button">人気順</button>
+      <div class="main__content__toggle">
+        <div
+          class="toggle__background"
+          :class="[
+            !toggleStatus ? 'toggleOld' : '',
+            toggleStatus === 'new' ? 'toggleNew' : '',
+            toggleStatus === 'viewed' ? 'toggleViewed' : '',
+          ]"
+        ></div>
+        <button class="toggle__button" @click="sortDescend" :class="!toggleStatus ? 'colorwhite' : ''">古い順</button>
+        <button class="toggle__button" @click="sortAscend" :class="toggleStatus === 'new' ? 'colorwhite' : ''">新しい順</button>
+        <button class="toggle__button" @click="sortViewed" :class="toggleStatus === 'viewed' ? 'colorwhite' : ''">人気順</button>
       </div>
       <ul class="main__items__container">
         <li
@@ -43,32 +51,27 @@ export default {
         {id: 6, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
         {id: 7, url: require("@/assets/img/logo.png"), title: "Example7", type: "img", genre: "stock" },
         {id: 8, url: require("@/assets/img/logo.png"), title: "Example8", type: "img", genre: "stock" }
-      ]
-      // modalItem: ""
+      ],
+      toggleStatus: ""
     }
   },
   methods: {
+    sortDescend() {
+      this.toggleStatus = ""
+      const resultDescend = this.items.sort((a, b) => (a.id < b.id ? -1 : 1))
+      return resultDescend
+    },
     sortAscend() {
+      this.toggleStatus = "new"
       const resultAscend = this.items.sort((a, b) => (a.id > b.id ? -1 : 1))
       return resultAscend
     },
-    sortDescend() {
-      const resultDescend = this.items.sort((a, b) => (a.id < b.id ? -1 : 1))
-      return resultDescend
+    sortViewed() {
+      this.toggleStatus = "viewed"
     },
     clickImage(item) {
       this.$emit('from-item', item.url)
     }
-  },
-  mounted() {
-
-    // axios.get('http://localhost:3000/api/hello')
-    // .then((res) => {
-    //   for(let i = 0; i < res.data.length;i++) {
-    //     this.items.push(res.data[i])
-    //     this.items[i].file_url = require('@/assets' + this.items[i].file_url)
-    //   }
-    // })
   }
 }
 </script>
@@ -82,15 +85,68 @@ export default {
   margin: 8px 0 0;
 }
 
-.main__content__options {
+.main__content__toggle {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  width: 278px;
   margin-top: 12px;
+  color: rgb(204, 204, 204);
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 50px;
 }
 
-.options__sort__button {
-  padding: 5px;
-  margin-right: 12px;
-  border: 2px solid #252525;
-  border-radius: 8px;
+.toggle__background {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 92px;
+  height: 27px;
+  background-color: #252525;
+  transition: .1s ease-in-out;
+}
+
+.toggleOld {
+  transform: translateX(0px);
+}
+
+.toggleNew {
+  transform: translateX(92px);
+}
+
+.toggleViewed {
+  transform: translateX(184px);
+}
+
+.colorwhite {
+  color: #eee;
+}
+
+.toggle__button {
+  position: relative;
+  width: 92px;
+  padding: 4px 16px;
+  text-align: center;
+}
+
+.toggle__button:last-child {
+  margin-right: 0;
+}
+
+/* トグルボタンの区切り線 */
+.toggle__button::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: 0px;
+  width: 1px;
+  height: 29px;
+  border-right: 1px solid rgb(204, 204, 204);
+}
+
+.toggle__button:last-child::after {
+  display: none;
 }
 
 
