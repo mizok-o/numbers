@@ -2,7 +2,9 @@
   <div class="app__container">
     <number />
     <main-content @from-item="openModal" />
-    <modalopen :itemVal="itemUrl" v-show="showContent" @from-modal="closeModal" />
+    <transition>
+      <modalopen :itemVal="itemUrl" v-if="showContent" @from-modal="closeModal" />
+    </transition>
   </div>
 </template>
 

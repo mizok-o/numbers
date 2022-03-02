@@ -1,0 +1,10 @@
+[
+  {"id": 1, "url": require('@/assets/img/logo.png'), "title": "Example", "type": "img", "genre": "stock" },
+  {"id": 2, "url": require('@/assets/img/logo.png'), "title": "Example2", "type": "img", "genre": "stock" },
+  {"id": 3, "url": require('@/assets/img/logo.png'), "title": "Example3", "type": "img", "genre": "stock" },
+  {"id": 4, "url": require('@/assets/img/logo.png'), "title": "Example", "type": "img", "genre": "stock" },
+  {"id": 5, "url": require('@/assets/img/logo.png'), "title": "Example", "type": "img", "genre": "stock" },
+  {"id": 6, "url": require('@/assets/img/logo.png'), "title": "Example", "type": "img", "genre": "stock" },
+  {"id": 7, "url": require('@/assets/img/logo.png'), "title": "Example7", "type": "img", "genre": "stock" },
+  {"id": 8, "url": require('@/assets/img/logo.png'), "title": "Example8", "type": "img", "genre": "stock" }
+]
