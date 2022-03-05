@@ -1,7 +1,8 @@
 <template>
   <div class="modal__background" id="overlay" @click="clickModal">
       <div class="modal__content" id="content">
-        <img :src="itemVal" >
+        <img v-if="itemVal.type === 'img'" :src="itemVal.url">
+        <video v-if="itemVal.type === 'video'" :src="itemVal.url" controls></video>
       </div>
     </div>
 </template>

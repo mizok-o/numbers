@@ -45,6 +45,7 @@ export default {
 
 .item__name {
   margin: 4px 0 0;
+  font-size: 20px;
 }
 
 .item__button__liked svg {

@@ -18,7 +18,7 @@
           >
             <div class="item__file__container" @click="clickImage(item)">
               <img v-if="item.type === 'img'" :src="item.url">
-              <video v-if="item.type === 'video'" :src="item.url" controls></video>
+              <video v-if="item.type === 'video'" :src="item.url"></video>
             </div>
             <div class="item__text">
               <span style="font-size: 13px;">No.{{item.id}}</span>
@@ -47,8 +47,8 @@ export default {
     return {
       items: [
         {id: 1, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
-        {id: 2, url: require("@/assets/img/logo.png"), title: "Example2", type: "img", genre: "stock" },
-        {id: 3, url: require("@/assets/img/logo.png"), title: "Example3", type: "img", genre: "stock" },
+        {id: 2, url: require("@/assets/video/relax-miipan.mp4"), title: "みーぱんほいみ", type: "video", genre: "stock" },
+        {id: 3, url: require("@/assets/video/relax-miipan02.mp4"), title: "みーぱんドゥン", type: "video", genre: "stock" },
         {id: 4, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
         {id: 5, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
         {id: 6, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     clickImage(item) {
-      this.$emit('from-item', item.url)
+      this.$emit('from-item', item)
     },
     sortDescend() {
       this.toggleStatus = ""
