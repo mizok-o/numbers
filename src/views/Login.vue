@@ -1,15 +1,16 @@
 <template>
   <div class="app__container">
+    <h1>Hello World</h1>
     <div class="password__img__container">
       <img class="password__img" src="../assets/img/password-icon.png" alt="パスワード アイコン">
     </div>
-    <form class="form__container" action="/" method="post">
+    <!-- <form class="form__container" action="/" method="post">
         <div class="password__container">
           <label class="password__label">パスワード</label>
           <input class="password__enter" required type="password" placeholder="パスワードを入力してください。" />
         </div>
         <button class="form__submit" type="submit"><p>ログイン</p></button>
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
   align-items: center;
 }
 
-.password__img__container, .form__container { 
+.password__img__container, .form__container {
   width: 50%;
 }
 
@@ -72,7 +73,7 @@ export default {
   .password__img, .password__enter, .form__submit{
     width: 100%
   }
-  .password__img__container, .form__container { 
+  .password__img__container, .form__container {
     width: 100%;
   }
   .password__label {

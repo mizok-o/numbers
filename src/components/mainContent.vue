@@ -2,22 +2,30 @@
   <div class="main__container">
     <h2>画像データ</h2>
     <div class="main__content">
+      <maintoggle
+        :propToggle="toggleStatus"
+        @descending="sortDescend"
+        @ascending="sortAscend"
+        @viewed="sortViewed"
+      />
       <ul class="main__items__container">
-        <li
-          v-for="item in items"
-          :key="item.file_id"
-          :class="item.kind"
-          class="main__item"
-        >
-          <div class="item__file__container">
-            <img v-if="item.file_format === 'img'" :src="item.file_url">
-            <video v-if="item.file_format === 'video'" :src="item.file_url" controls></video>
-          </div>
-          <div class="item__text">
-            <span style="font-size: 13px;">No.{{item.file_id}}</span>
-            <h3 class="item__name">{{ item.file_name }}</h3>
-          </div>
-        </li>
+        <transition-group name="shuffle">
+          <li
+            v-for="item in items"
+            :key="'datum-item-' + item.id"
+            :class="item.genre"
+            class="main__item"
+          >
+            <div class="item__file__container" @click="clickImage(item)">
+              <img v-if="item.type === 'img'" :src="item.url">
+              <video v-if="item.type === 'video'" :src="item.url"></video>
+            </div>
+            <div class="item__text">
+              <span style="font-size: 13px;">No.{{item.id}}</span>
+              <itemdesc :propTitle="item.title" />
+            </div>
+          </li>
+        </transition-group>
       </ul>
     </div>
     <!-- <upload :itemList="items" @newContent="showContent" /> -->
@@ -25,21 +33,48 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+// import gsap from 'gsap'
+import maintoggle from '../components/under-main/main-toggle.vue'
+import itemdesc from '../components/under-main/item-desc.vue'
+
 export default {
+  components: {
+    maintoggle,
+    itemdesc
+  },
   data() {
     return {
-      items: []
+      items: [
+        {id: 1, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
+        {id: 2, url: require("@/assets/video/relax-miipan.mp4"), title: "みーぱんほいみ", type: "video", genre: "stock" },
+        {id: 3, url: require("@/assets/video/relax-miipan02.mp4"), title: "みーぱんドゥン", type: "video", genre: "stock" },
+        {id: 4, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
+        {id: 5, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
+        {id: 6, url: require("@/assets/img/logo.png"), title: "Example", type: "img", genre: "stock" },
+        {id: 7, url: require("@/assets/img/logo.png"), title: "Example7", type: "img", genre: "stock" },
+        {id: 8, url: require("@/assets/img/logo.png"), title: "Example8", type: "img", genre: "stock" }
+      ],
+      toggleStatus: ""
     }
   },
-  mounted() {
-    axios.get('http://localhost:3000/api/hello')
-    .then((res) => {
-      for(let i = 0; i < res.data.length;i++) {
-        this.items.push(res.data[i])
-        this.items[i].file_url = require('@/assets' + this.items[i].file_url)
-      }
-    })
+  methods: {
+    clickImage(item) {
+      this.$emit('from-item', item)
+    },
+    sortDescend() {
+      this.toggleStatus = ""
+      const resultDescend = this.items.sort((a, b) => (a.id < b.id ? -1 : 1))
+      return resultDescend
+    },
+    sortAscend() {
+      this.toggleStatus = "new"
+      const resultAscend = this.items.sort((a, b) => (a.id > b.id ? -1 : 1))
+      return resultAscend
+    },
+    sortViewed() {
+      this.toggleStatus = "viewed"
+    }
   }
 }
 </script>
@@ -59,32 +94,31 @@ export default {
   max-width: 816px;
 }
 
+.shuffle-move {
+  transition: transform .2s ease;
+}
+
 .main__item {
+  position: relative;
+  overflow: hidden;
   width: 224px;
-  margin: 16px 48px 0 0;
+  margin: 32px 48px 0 0;
 }
 
 .item__file__container {
-  position: relative;
-  width: 218px;
-  height: 218px;
-  overflow: hidden;
-  border: 3px solid #252525;
+  width: 100%;
+  height: 224px;
+  padding: 12px;
+  border-radius: 32px;
+  background-color: #252525;
 }
 
-.item__file__container, img {
-  width: 218px;
-}
-
-.item__file__container video {
+.item__file__container video, img {
   width: 100%;
   height: 100%;
 }
 
 .item__text{
-  margin: 4px 0 0;
-}
-.item__name {
   margin: 4px 0 0;
 }
 
