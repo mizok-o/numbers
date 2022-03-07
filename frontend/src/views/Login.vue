@@ -1,30 +1,60 @@
 <template>
   <div class="app__container">
-    <h1>Hello World</h1>
-    <div class="password__img__container">
-      <img class="password__img" src="../assets/img/password-icon.png" alt="パスワード アイコン">
-    </div>
-    <!-- <form class="form__container" action="/" method="post">
-        <div class="password__container">
-          <label class="password__label">パスワード</label>
-          <input class="password__enter" required type="password" placeholder="パスワードを入力してください。" />
-        </div>
-        <button class="form__submit" type="submit"><p>ログイン</p></button>
-    </form> -->
+    <h1>ログイン画面</h1>
+    <p>{{ errorMessage }}</p>
+    <form class="form__container" action="/home" method="post">
+      <label class="user__label">ユーザ名</label>
+      <input class="user__enter" required v-model="username" type="text" placeholder="ユーザ名を入力してください。" />
+      <div class="password__container">
+        <label class="password__label">パスワード</label>
+        <input class="password__enter" required v-model="password" type="password" placeholder="パスワードを入力してください。" />
+      </div>
+      <!-- <button class="form__submit" type="button" @click="testtest">送信</button> -->
+      <input class="form__submit" type="button" @click="testtest" value="送信" />
+    </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    name: "login"
+    name: "login",
+    data() {
+      return {
+        username: "",
+        password: "",
+        errorMessage: "",
+        loginResult: false
+      }
+    },
+    methods: {
+      testtest() {
+        console.log("test");
+        console.log(this.username);
+        console.log(this.password);
+        axios.post('http://localhost:3000/api/hello', {
+          username: this.username,
+          password: this.password
+        })
+          .then((res) => {
+            this.loginResult = res.data
+            if (!this.loginResult) {
+              this.errorMessage = "ユーザ名かパスワードが誤っています。"
+              return
+            }
+
+            this.errorMessage = ""
+            this.$router.push({ path: "/home" })
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
+    }
 }
 </script>
 
 <style scoped>
-.app__container {
-  display: flex;
-  align-items: center;
-}
 
 .password__img__container, .form__container {
   width: 50%;
@@ -49,10 +79,11 @@ export default {
 
 .form__submit {
   position: relative;
-  width: 240px;
+  width: 200px;
   height: 40px;
   margin: 32px 0 0;
   color: #fff;
+  text-align: center;
   background-color: #0095F6;
   border-radius: 4px;
 }
