@@ -95,7 +95,7 @@ export default {
 }
 
 .shuffle-move {
-  transition: transform .2s ease;
+  transition: transform .45s ease-out;
 }
 
 .main__item {
