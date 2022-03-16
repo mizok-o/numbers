@@ -1,6 +1,6 @@
 <template>
   <div class="app__container">
-    <h1>ログイン画面</h1>
+    <h1>ログイン画面です</h1>
     <p>{{ errorMessage }}</p>
     <form class="form__container" action="/home" method="post">
       <label class="user__label">ユーザ名</label>
